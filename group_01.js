@@ -32,7 +32,7 @@ var bonusAdjuster = function( xhalfDone, yempNumber, zaSalary ){
 var longWorkers = function() {
   if (yempNumber.length == 4 ) {
     xhalfDone += 0.05;
-    console.log("in longWorkers, xhalfDone is " + xhalfDone);
+    //console.log("in longWorkers, xhalfDone is " + xhalfDone);
   }
   else{}
 };
@@ -41,7 +41,7 @@ var longWorkers = function() {
 var incomeAdjuster = function() {
   if (zaSalary > 65000) {
     xhalfDone -= 0.01;
-    console.log("in incomeAdjuster, xhalfDone is " + xhalfDone);
+    //console.log("in incomeAdjuster, xhalfDone is " + xhalfDone);
 
   }
   else{}
@@ -50,7 +50,7 @@ var incomeAdjuster = function() {
 var bonusCeiling = function() {
   if (xhalfDone > 0.13) {
     xhalfDone = 0.13;
-    console.log("in bonusCeiling, xhalfDone is " + xhalfDone);
+    //console.log("in bonusCeiling, xhalfDone is " + xhalfDone);
 
   }
   else{}
@@ -72,16 +72,16 @@ var bonusCalc = function(input) {
     // Calculate the STI by accessing stiCalc function//
 var aSalary = input[i][2];
 var halfDone = stiCalc(input[i][3]);
-console.log("halfDone is " + halfDone);
+//console.log("halfDone is " + halfDone);
 var empNumber = input[i][1];
 var finalSalary = bonusAdjuster(halfDone, empNumber, aSalary  );
 
-tempArray.push(finalSalary);
+tempArray.push((finalSalary * 100) + "%");
 
-var newSalary= Math.round(aSalary * (tempArray[1] + 1));
-tempArray.push(newSalary);
+var newSalary= Math.round(aSalary * (finalSalary + 1));
+tempArray.push("$" + newSalary);
 
-tempArray.push(newSalary-aSalary);
+tempArray.push("$" + (newSalary-aSalary));
 
 console.log(tempArray);
 
